@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>A.C.F CONSULTING</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#f5f7fb;
+}
+
+/* HEADER */
+header {
+  background:#1e3a8a;
+  color:white;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav a {
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+}
+
+/* SECTIONS */
+section {
+  display:none;
+  padding:40px;
+}
+
+.active {
+  display:block;
+}
+
+/* HERO */
+.hero {
+  background:linear-gradient(120deg,#1e3a8a,#2563eb);
+  color:white;
+  text-align:center;
+  padding:80px 20px;
+}
+
+/* CARDS */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* FORM */
+input, select, textarea {
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+}
+
+/* BUTTON */
+button {
+  background:#2563eb;
+  color:white;
+  padding:10px;
+  border:none;
+  cursor:pointer;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:green;
+  color:white;
+  padding:15px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+/* CHATBOT */
+.chatbot {
+  position:fixed;
+  bottom:80px;
+  left:20px;
+  width:250px;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.chat-messages {
+  height:120px;
+  overflow:auto;
+  font-size:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>A.C.F CONSULTING</h2>
+  <nav>
+    <a onclick="show('home')">Accueil</a>
+    <a onclick="show('services')">Services</a>
+    <a onclick="show('etudes')">Études</a>
+    <a onclick="show('candidature')">Candidature</a>
+    <a onclick="show('rdv')">Rendez-vous</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="hero">
+    <h1>Un monde d’opportunités</h1>
+    <p>Accompagnement académique, business et médical international</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>Nos Services</h2>
+
+  <div class="grid">
+    <div class="card">🎓 Orientation académique</div>
+    <div class="card">💼 Création entreprise</div>
+    <div class="card">📊 Conseil professionnel</div>
+    <div class="card">🏥 Tourisme médical</div>
+    <div class="card">🚀 Entrepreneuriat</div>
+  </div>
+</section>
+
+<!-- ETUDES -->
+<section id="etudes">
+  <h2>Études à l’étranger</h2>
+
+  <div class="grid">
+    <div class="card">🇫🇷 France</div>
+    <div class="card">🇭🇺 Hongrie</div>
+    <div class="card">🇲🇦 Maroc</div>
+    <div class="card">🇹🇳 Tunisie</div>
+    <div class="card">🇸🇳 Sénégal</div>
+  </div>
+</section>
+
+<!-- CANDIDATURE -->
+<section id="candidature">
+  <h2>Formulaire de candidature</h2>
+
+  <input placeholder="Nom complet">
+  <input placeholder="Email">
+  <input placeholder="Téléphone">
+
+  <select>
+    <option>France</option>
+    <option>Hongrie</option>
+    <option>Maroc</option>
+    <option>Tunisie</option>
+    <option>Sénégal</option>
+  </select>
+
+  <textarea placeholder="Votre projet"></textarea>
+
+  <button onclick="alert('Candidature envoyée !')">
+    Envoyer
+  </button>
+</section>
+
+<!-- RENDEZ VOUS -->
+<section id="rdv">
+  <h2>Prise de rendez-vous</h2>
+
+  <input type="datetime-local" id="date">
+
+  <button onclick="rdv()">
+    Confirmer
+  </button>
+</section>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/21653337536" target="_blank">
+💬
+</a>
+
+<!-- CHATBOT -->
+<div class="chatbot">
+  <b>Assistant IA</b>
+
+  <div class="chat-messages" id="chat"></div>
+
+  <input id="msg" placeholder="Écris..." style="width:100%">
+  <button onclick="send()">Envoyer</button>
+</div>
+
+<script>
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function rdv(){
+  let date = document.getElementById("date").value;
+  alert("Rendez-vous enregistré : " + date);
+}
+
+function send(){
+  let msg = document.getElementById("msg").value;
+  let chat = document.getElementById("chat");
+
+  chat.innerHTML += "<div><b>Vous:</b> "+msg+"</div>";
+  chat.innerHTML += "<div><b>Bot:</b> Nous vous répondrons bientôt</div>";
+
+  document.getElementById("msg").value = "";
+}
+</script>
+
+</body>
+</html>
